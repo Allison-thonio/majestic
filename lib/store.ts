@@ -165,8 +165,8 @@ export const productsData: Product[] = [
 const usersStore: User[] = [
   {
     id: 'user-admin',
-    email: 'admin@gem.com',
-    password: '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6288', // hashed 'admin123'
+    email: 'majestic@gmail.com',
+    password: '43f5d64fb5bf56f468e0881203d101ee12f2301efafe1336d0abd217f621a963', // hashed 'majestic@2026'
     role: 'admin',
     createdAt: new Date().toISOString(),
   },

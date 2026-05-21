@@ -36,7 +36,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-gray-900 text-white flex flex-col">
         <div className="p-6 border-b border-gray-800">
-          <h2 className="text-xl font-bold">Admin Panel</h2>
+          <h2 className="text-xl font-bold">Majestic Hub Admin</h2>
           <p className="text-gray-400 text-sm mt-2">{user.email}</p>
         </div>
 

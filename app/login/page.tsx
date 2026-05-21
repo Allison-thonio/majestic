@@ -97,8 +97,8 @@ export default function LoginPage() {
             {/* Demo credentials */}
             <div className="mt-8 pt-6 border-t border-gray-200">
               <p className="text-xs text-gray-500 mb-2">Demo Admin Credentials:</p>
-              <p className="text-xs text-gray-600">Email: admin@majestichub.com</p>
-              <p className="text-xs text-gray-600">Password: admin123</p>
+              <p className="text-xs text-gray-600">Email: majestic@gmail.com</p>
+              <p className="text-xs text-gray-600">Password: majestic@2026</p>
             </div>
           </div>
         </div>

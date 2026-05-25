@@ -4,25 +4,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #121212;
-  --foreground: #F9F8F6;
-  --card: #121212;
-  --card-foreground: #F9F8F6;
-  --popover: #121212;
-  --popover-foreground: #F9F8F6;
-  --primary: #C5A059;
-  --primary-foreground: #121212;
+  --background: #0a0a0a;
+  --foreground: #f5f3ee;
+  --card: #0a0a0a;
+  --card-foreground: #f5f3ee;
+  --popover: #0a0a0a;
+  --popover-foreground: #f5f3ee;
+  --primary: #c9a96e;
+  --primary-foreground: #0a0a0a;
   --secondary: #707070;
-  --secondary-foreground: #F9F8F6;
-  --muted: #1e1e1e;
+  --secondary-foreground: #f5f3ee;
+  --muted: #1c1c1c;
   --muted-foreground: #707070;
-  --accent: #C5A059;
-  --accent-foreground: #121212;
+  --accent: #c9a96e;
+  --accent-foreground: #0a0a0a;
   --destructive: #7f1d1d;
   --destructive-foreground: #fef2f2;
   --border: #333333;
   --input: #333333;
-  --ring: #C5A059;
+  --ring: #c9a96e;
   --radius: 0.25rem;
 }
 
@@ -51,4 +51,127 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Scroll Animation Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.stagger > * {
+  transition-delay: calc(var(--stagger-index, 0) * 0.1s);
+}
+
+/* Hero Entrance Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+/* Sticky Nav Scrolled State */
+header.scrolled {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--primary);
+}
+
+/* Custom Cursor (desktop only) */
+@media (pointer: fine) {
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+    mix-blend-mode: difference;
+  }
+
+  .custom-cursor.hover {
+    transform: scale(1.5);
+    background: var(--primary);
+  }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
 }

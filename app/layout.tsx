@@ -8,8 +8,8 @@ const hankenGrotesk = Hanken_Grotesk({ subsets: ["latin"], variable: '--font-han
 const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: '--font-playfair' });
 
 export const metadata: Metadata = {
-  title: 'Majestic Hub | Quality Products & Service',
-  description: 'Your trusted destination for high-quality products and exceptional customer service.',
+  title: 'Majestic Hub | Premium Fashion Store in Warri, Nigeria',
+  description: 'Your trusted destination for premium clothing, accessories, and exceptional customer service. Located in Warri, Delta State, Nigeria.',
   generator: 'v0.app',
   icons: {
     icon: [

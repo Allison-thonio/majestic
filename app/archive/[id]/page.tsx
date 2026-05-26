@@ -10,6 +10,7 @@ import { ShoppingCart } from 'lucide-react';
 export default function ProductDetail({ params }: { params: { id: string } }) {
   const product = getProductById(params.id);
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string>(product?.sizes[0] || '');
 
   if (!product) {
     return (
@@ -55,7 +56,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
                   {product.name}
                 </h1>
                 <p className="text-3xl font-serif text-primary/90 mt-8">
-                  ${product.price.toLocaleString()}
+                  ₦{product.price.toLocaleString()}
                 </p>
               </div>
 
@@ -64,6 +65,27 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
               </p>
 
               <div className="space-y-8 pt-8 border-t border-white/5">
+                {product.sizes && product.sizes.length > 0 && (
+                  <div className="space-y-4">
+                    <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/40">Select Size</span>
+                    <div className="flex flex-wrap gap-3">
+                      {product.sizes.map((size) => (
+                        <button
+                          key={size}
+                          onClick={() => setSelectedSize(size)}
+                          className={`font-sans text-[10px] uppercase tracking-widest px-4 py-2 border transition-all duration-300 ${
+                            selectedSize === size
+                              ? 'border-primary text-primary bg-primary/10'
+                              : 'border-white/10 text-foreground/60 hover:border-white/30 hover:text-foreground'
+                          }`}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between">
                   <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-foreground/40">Quantity</span>
                   <div className="flex items-center gap-8 border border-white/10 px-6 py-3">
@@ -85,8 +107,8 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
                 </div>
 
                 <button
-                  disabled={product.stock === 0}
-                  className="w-full bg-primary text-background py-5 font-sans text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-foreground hover:text-background transition-all duration-500 flex items-center justify-center gap-4"
+                  disabled={product.stock === 0 || !selectedSize}
+                  className="w-full bg-primary text-background py-5 font-sans text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-foreground hover:text-background transition-all duration-500 flex items-center justify-center gap-4 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   Request Acquisition
@@ -105,7 +127,7 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
                 </div>
                 <div className="space-y-2">
                   <span className="block font-sans text-[8px] uppercase tracking-[0.3em] text-primary">Authenticity</span>
-                  <span className="block font-sans text-[10px] uppercase tracking-widest text-foreground/50">Certified Mineral</span>
+                  <span className="block font-sans text-[10px] uppercase tracking-widest text-foreground/50">Premium Quality</span>
                 </div>
               </div>
             </div>

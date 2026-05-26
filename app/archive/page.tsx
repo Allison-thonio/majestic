@@ -7,17 +7,30 @@ import { getProducts } from '@/lib/store';
 import { useState } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { useScrollAnimations } from '@/hooks/use-scroll-animations';
+import RateLimiter from '@/lib/rate-limiter';
+import { showToast } from '@/lib/security-helpers';
 
 export default function Archive() {
   const products = getProducts();
   const [cart, setCart] = useState<{ [key: string]: number }>({});
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   useScrollAnimations();
 
+  const categories = ['all', ...Array.from(new Set(products.map(p => p.category)))];
+  const filteredProducts = activeCategory === 'all' 
+    ? products 
+    : products.filter(p => p.category === activeCategory);
+
   const addToCart = (productId: string) => {
+    if (!RateLimiter.check('addToCart', 10, 30000)) {
+      showToast('Too many items added quickly. Please wait.', 'error');
+      return;
+    }
     setCart((prev) => ({
       ...prev,
       [productId]: (prev[productId] || 0) + 1,
     }));
+    showToast('Added to cart', 'success');
   };
 
   return (
@@ -41,9 +54,26 @@ export default function Archive() {
 
         {/* Products Grid */}
         <section className="px-4 py-16 md:py-24 lg:py-32">
+          <div className="max-w-7xl mx-auto mb-12 overflow-x-auto pb-4 hide-scrollbar">
+            <div className="flex gap-4 reveal whitespace-nowrap">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`font-sans text-[10px] uppercase tracking-[0.2em] px-6 py-3 transition-colors ${
+                    activeCategory === cat 
+                      ? 'bg-primary text-background' 
+                      : 'bg-white/5 text-foreground hover:bg-white/10'
+                  }`}
+                >
+                  {cat.replace('-', ' ')}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-1 gap-y-12 lg:gap-y-16 stagger">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <div key={product.id} className="group space-y-6 reveal">
                   <div className="relative aspect-[3/4] overflow-hidden bg-white/5 border border-white/5 group-hover:border-primary/30 transition-all duration-500">
                     <img

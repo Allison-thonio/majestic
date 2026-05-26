@@ -38,6 +38,9 @@ export function Header() {
             <Link href="/archive" className="text-foreground/70 hover:text-primary transition-all duration-300 font-sans text-xs uppercase tracking-[0.2em]">
               Archive
             </Link>
+            <Link href="/admin" className="text-foreground/70 hover:text-primary transition-all duration-300 font-sans text-xs uppercase tracking-[0.2em]">
+              Admin
+            </Link>
           </nav>
 
           {/* Desktop Actions */}

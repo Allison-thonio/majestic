@@ -56,6 +56,17 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Marquee Section */}
+        <section className="py-4 bg-primary text-background overflow-hidden flex items-center">
+          <div className="flex whitespace-nowrap marquee">
+            {[...Array(8)].map((_, i) => (
+              <span key={i} className="mx-8 font-serif text-xl md:text-2xl italic tracking-wider">
+                Premium Fashion • Unmatched Quality • Style & Elegance •
+              </span>
+            ))}
+          </div>
+        </section>
+
         {/* Featured Collection Section */}
         <section className="py-16 md:py-24 lg:py-32 px-4 border-y border-white/5">
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">

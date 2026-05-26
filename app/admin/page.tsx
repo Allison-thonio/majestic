@@ -31,8 +31,10 @@ export default function AdminDashboard() {
   const COLORS = ['#10b981', '#f59e0b', '#ef4444'];
 
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Majestic Hub Dashboard</h1>
+    <div className="bg-background text-foreground min-h-screen p-8">
+      <h1 className="text-3xl font-bold text-primary mb-8">Majestic Hub Dashboard</h1>
+
+
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
@@ -71,7 +73,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stock Distribution */}
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="card">
           <h2 className="text-lg font-bold text-gray-900 mb-6">Stock Status</h2>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -87,7 +89,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent Orders */}
-      <div className="bg-white rounded-lg shadow p-6 mt-8">
+      <div className="card mt-8">
         <h2 className="text-lg font-bold text-gray-900 mb-6">Recent Orders</h2>
         <div className="overflow-x-auto">
           <table className="w-full">

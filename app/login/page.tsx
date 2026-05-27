@@ -199,12 +199,7 @@ export default function LoginPage() {
               </Link>
             </p>
 
-            {/* Demo credentials */}
-            <div className="mt-8 pt-6 border-t border-white/5">
-              <p className="text-[10px] text-foreground/40 mb-2 font-sans uppercase tracking-widest">Demo Admin Credentials:</p>
-              <p className="text-xs text-foreground/60 font-sans">Email: majestic@gmail.com</p>
-              <p className="text-xs text-foreground/60 font-sans">Password: majestic@2026</p>
-            </div>
+
           </div>
         </div>
       </main>

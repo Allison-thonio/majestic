@@ -291,3 +291,28 @@ export function validateSession(sessionId: string): string | null {
 export function deleteSession(sessionId: string): void {
   sessionsStore.delete(sessionId);
 }
+
+// Add product
+export function addProduct(product: Omit<Product, 'id'>): Product {
+  const newProduct: Product = {
+    ...product,
+    id: 'prod-' + Date.now(),
+  };
+  productsData.push(newProduct);
+  return newProduct;
+}
+
+// Delete product
+export function deleteProduct(id: string): boolean {
+  const index = productsData.findIndex((p) => p.id === id);
+  if (index !== -1) {
+    productsData.splice(index, 1);
+    return true;
+  }
+  return false;
+}
+
+// Get all users (for admin)
+export function getAllUsers(): Omit<User, 'password'>[] {
+  return usersStore.map(({ password, ...user }) => user);
+}
